@@ -5,8 +5,8 @@ function M.setup(opts)
 	for k,_ in pairs(opts or {}) do for k1,v1 in pairs(opts[k]) do config[k][k1] = v1 end end
 end
 
-local file = io.open(config.config.tempfile, "r")
 local function on_exit()
+	local file = io.open(config.config.tempfile, "r")
 	if file ~= nil then
 		vim.api.nvim_win_close(Win, true)
 		io.close(file)
@@ -36,10 +36,8 @@ local function createWin(cmd)
 	vim.fn.termopen(cmd, { on_exit = on_exit })
 	vim.api.nvim_command("startinsert")
 	vim.api.nvim_win_set_option(Win, 'winhl', 'Normal:Normal')
-	vim.api.nvim_buf_set_keymap(Buf, 't', 'q', '<C-\\><C-n>:lua require("fm-nvim").closeWin()<CR>', { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', 'q', '<C-\\><C-n>:lua vim.api.nvim_win_close(Win, true)<CR>', { silent = true })
 end
-
-function M.closeWin() vim.api.nvim_win_close(Win, true) end
 
 function M.Lf() createWin("lf -selection-path " .. config.config.tempfile) end
 
@@ -50,6 +48,5 @@ function M.Xplr() createWin("xplr > " .. config.config.tempfile) end
 function M.Ranger() createWin("ranger --choosefiles=" .. config.config.tempfile) end
 
 function M.Vifm() createWin("vifm --choose-files " .. config.config.tempfile .. " .") end
-
 
 return M
