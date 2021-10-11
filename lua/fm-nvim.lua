@@ -47,6 +47,6 @@ function M.Xplr() createWin("xplr > " .. config.config.tempfile) end
 
 function M.Ranger() createWin("ranger --choosefiles=" .. config.config.tempfile) end
 
-function M.Vifm() createWin("vifm --choose-files " .. config.config.tempfile .. " .") end
+function M.Vifm() createWin("vifm --choose-files " .. config.config.tempfile) end
 
 return M
