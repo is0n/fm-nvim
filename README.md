@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/github/license/is0n/fm-nvim?logo=GNU)](https://github.com/is0n/fm-nvim/blob/master/LICENSE)
 
 # fm-nvim
-`fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers from within Neovim.
+`fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers from within Neovim. It's written in under **100 lines of pure Lua**.
 
 * Supported File Managers
 	* [Ranger](https://github.com/ranger/ranger)
@@ -61,7 +61,6 @@ require('fm-nvim').setup{
 ## TODO:
 * High Priority
 	* [ ] Replace Netrw
-
 * Low Priority
 	* [ ] Add arguments to the commands (eg. directory path)
 	* [ ] Add a tree like option
