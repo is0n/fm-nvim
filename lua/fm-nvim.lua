@@ -10,7 +10,7 @@ local function on_exit()
 	if file ~= nil then
 		vim.api.nvim_win_close(Win, true)
 		io.close(file)
-		vim.cmd("edit " .. vim.fn.readfile(config.config.tempfile)[1])
+		vim.cmd(config.config.edit_cmd .. " " .. vim.fn.readfile(config.config.tempfile)[1])
 	end
 end
 
