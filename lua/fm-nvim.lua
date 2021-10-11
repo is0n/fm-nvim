@@ -37,6 +37,7 @@ local function createWin(cmd)
 	vim.api.nvim_command("startinsert")
 	vim.api.nvim_win_set_option(Win, 'winhl', 'Normal:Normal')
 	vim.api.nvim_buf_set_keymap(Buf, 't', 'q', '<C-\\><C-n>:lua vim.api.nvim_win_close(Win, true)<CR>', { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', '<ESC>', '<C-\\><C-n>:lua vim.api.nvim_win_close(Win, true)<CR>', { silent = true })
 end
 
 function M.Lf() createWin("lf -selection-path " .. config.config.tempfile) end
