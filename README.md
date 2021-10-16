@@ -16,13 +16,6 @@
 	* [Nnn](https://github.com/jarun/nnn)
 	* [Lf](https://github.com/gokcehan/lf)
 
-* Commands
-	* `Ranger`
-	* `Xplr`
-	* `Vifm`
-	* `Nnn`
-	* `Lf`
-
 ## Demo:
 ![Demo](Demo.gif)
 
@@ -48,21 +41,55 @@
 Change any of these values to suit your needs
 ```lua
 require('fm-nvim').setup{
-	config =
-	{
-		edit_cmd = "edit", -- opts: 'tabedit'; 'split'; 'pedit'; etc...
-		border   = "none", -- opts: 'rounded'; 'double'; 'single'; 'solid'; 'shawdow'
-		height   = 0.8,
-		width    = 0.8,
+	-- Border around floating window
+	border   = "none", -- opts: 'rounded'; 'double'; 'single'; 'solid'; 'shawdow'
+
+	-- Percentage (0.8 = 80%)
+	height   = 0.8,
+	width    = 0.8,
+
+	-- Command used to open files
+	edit_cmd = "edit", -- opts: 'tabedit'; 'split'; 'pedit'; etc...
+
+	-- Terminal commands used w/ file manager
+	cmds = {
+		lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
+		nnn_cmd    = "nnn",
+		xplr_cmd   = "xplr",
+		vifm_cmd   = "vifm",
+		ranger_cmd = "ranger"
 	}
 }
 ```
+
+## Usage:
+Any of the following commands are fine...
+* Commands
+	* `:Ranger`
+	* `:Xplr`
+	* `:Vifm`
+	* `:Nnn`
+	* `:Lf`
+
+but you can add a directory path w/ the command...
+
+Example:
+```
+:Lf ~/.config/nvim/
+```
+
+## Q&A
+What if I want to open files in splits or tabs?
+* Use any of the following mappings:
+  * <C-h> for horizontal split
+  * <C-v> for vertical split
+  * <C-t> for tabs
 
 ## TODO:
 * High Priority
 	* [ ] Replace Netrw
 * Low Priority
-	* [ ] Add arguments to the commands (eg. directory path)
+	* [x] Add arguments to the commands (eg. directory path)
 	* [ ] Add a tree like option
 
 Any feedback, issues, or pull requests are greatly appreciated
