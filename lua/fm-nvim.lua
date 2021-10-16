@@ -12,6 +12,12 @@ local config = {
 		xplr_cmd   = "xplr",
 		vifm_cmd   = "vifm",
 		ranger_cmd = "ranger"
+	},
+	mappings = {
+		vert_split = "<C-v>",
+		horz_split = "<C-h>",
+		tabedit    = "<C-h>",
+		edit       = "<C-e>"
 	}
 }
 local method = config.edit_cmd
@@ -22,10 +28,10 @@ function M.setup(user_options) config = vim.tbl_extend('force', config, user_opt
 -- Setup mappings
 function M.setMethod(opt) method = opt end
 local function setMappings(suffix)
-	vim.api.nvim_buf_set_keymap(Buf, 't', '<C-e>', '<C-\\><C-n>:lua require("fm-nvim").setMethod("edit")<CR>i' .. suffix, { silent = true })
-	vim.api.nvim_buf_set_keymap(Buf, 't', '<C-t>', '<C-\\><C-n>:lua require("fm-nvim").setMethod("tabedit")<CR>i' .. suffix, { silent = true })
-	vim.api.nvim_buf_set_keymap(Buf, 't', '<C-h>', '<C-\\><C-n>:lua require("fm-nvim").setMethod("split | edit")<CR>i' .. suffix, { silent = true })
-	vim.api.nvim_buf_set_keymap(Buf, 't', '<C-v>', '<C-\\><C-n>:lua require("fm-nvim").setMethod("vsplit | edit")<CR>i' .. suffix, { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.edit, '<C-\\><C-n>:lua require("fm-nvim").setMethod("edit")<CR>i' .. suffix, { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.tabedit, '<C-\\><C-n>:lua require("fm-nvim").setMethod("tabedit")<CR>i' .. suffix, { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.horz_split, '<C-\\><C-n>:lua require("fm-nvim").setMethod("split | edit")<CR>i' .. suffix, { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.vert_split, '<C-\\><C-n>:lua require("fm-nvim").setMethod("vsplit | edit")<CR>i' .. suffix, { silent = true })
 end
 
 -- Open selected file upon exit

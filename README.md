@@ -59,6 +59,14 @@ require('fm-nvim').setup{
 		vifm_cmd   = "vifm",
 		ranger_cmd = "ranger"
 	}
+
+	-- Mappings used inside the floating window
+	mappings = {
+		vert_split = "<C-v>",
+		horz_split = "<C-h>",
+		tabedit    = "<C-h>",
+		edit       = "<C-e>"
+	}
 }
 ```
 
@@ -80,7 +88,7 @@ Example:
 
 ## Q&A
 What if I want to open files in splits or tabs?
-* Use any of the following mappings:
+* Use any of the following mappings (unless you've changed them):
   * `<C-h>` for horizontal split
   * `<C-v>` for vertical split
   * `<C-e>` for normal edit
