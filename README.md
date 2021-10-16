@@ -81,9 +81,10 @@ Example:
 ## Q&A
 What if I want to open files in splits or tabs?
 * Use any of the following mappings:
-  * <C-h> for horizontal split
-  * <C-v> for vertical split
-  * <C-t> for tabs
+  * `<C-h>` for horizontal split
+  * `<C-v>` for vertical split
+  * `<C-e>` for normal edit
+  * `<C-t>` for tabs
 
 ## TODO:
 * High Priority
