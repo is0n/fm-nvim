@@ -52,13 +52,11 @@ require('fm-nvim').setup{
 	edit_cmd = "edit", -- opts: 'tabedit'; 'split'; 'pedit'; etc...
 
 	-- Terminal commands used w/ file manager
-	cmds = {
-		lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
-		nnn_cmd    = "nnn",
-		xplr_cmd   = "xplr",
-		vifm_cmd   = "vifm",
-		ranger_cmd = "ranger"
-	}
+	lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
+	nnn_cmd    = "nnn",
+	xplr_cmd   = "xplr",
+	vifm_cmd   = "vifm",
+	ranger_cmd = "ranger"
 
 	-- Mappings used inside the floating window
 	mappings = {
@@ -87,19 +85,36 @@ Example:
 ```
 
 ## Q&A
-What if I want to open files in splits or tabs?
-* Use any of the following mappings (unless you've changed them):
-  * `<C-h>` for horizontal split
-  * `<C-v>` for vertical split
-  * `<C-e>` for normal edit
-  * `<C-t>` for tabs
+Q: What if I want to open files in splits or tabs?
+
+A: Use any of the default mappings (unless you've changed them)...
+* `<C-h>` for horizontal split
+* `<C-v>` for vertical split
+* `<C-e>` for normal edit
+* `<C-t>` for tabs
+
+Q: Can I run a function once exiting or entering the plugin?
+
+A: Yes you can! Use the following code as a guide...
+```lua
+local function yourFunction()
+	-- Your code goes here
+end
+
+require('fm-nvim').setup{
+	-- Runs yourFunction() upon exiting the floating window
+	on_close = { yourFunction },
+
+	-- Runs yourFunction() upon opening the floating window (can only be functions)
+	on_open = { yourFunction }
+}
+```
 
 ## TODO:
 * High Priority
 	* [ ] Replace Netrw
 * Low Priority
 	* [x] Add arguments to the commands (eg. directory path)
-	* [ ] Add a tree like option
 
 Any feedback, issues, or pull requests are greatly appreciated
 

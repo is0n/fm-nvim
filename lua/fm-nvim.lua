@@ -1,31 +1,30 @@
--- Setup a few things
 local M = {}
+local vim = vim
 local config = {
-	tempfile		 = "/tmp/fm-nvim",
-	border			 = "none",
-	height			 = 0.8,
-	width				 = 0.8,
-	edit_cmd     = "edit",
+	border				= "none",
+	height				= 0.8,
+	width					= 0.8,
+	edit_cmd			= "edit",
+	on_close			= {},
+	on_open       = {},
 	cmds = {
-		lf_cmd     = "lf",
-		nnn_cmd    = "nnn",
-		xplr_cmd   = "xplr",
-		vifm_cmd   = "vifm",
-		ranger_cmd = "ranger"
+		lf_cmd        = "lf",
+		nnn_cmd       = "nnn",
+		xplr_cmd      = "xplr",
+		vifm_cmd      = "vifm",
+		ranger_cmd    = "ranger",
 	},
 	mappings = {
-		vert_split = "<C-v>",
-		horz_split = "<C-h>",
-		tabedit    = "<C-h>",
-		edit       = "<C-e>"
+		vert_split  = "<C-v>",
+		horz_split  = "<C-h>",
+		tabedit     = "<C-h>",
+		edit        = "<C-e>"
 	}
 }
 local method = config.edit_cmd
 
--- Allow the user to modify the settings
-function M.setup(user_options) config = vim.tbl_extend('force', config, user_options) end
+function M.setup(user_options) config = vim.tbl_deep_extend('force', config, user_options) end
 
--- Setup mappings
 function M.setMethod(opt) method = opt end
 local function setMappings(suffix)
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.edit, '<C-\\><C-n>:lua require("fm-nvim").setMethod("edit")<CR>i' .. suffix, { silent = true })
@@ -34,18 +33,18 @@ local function setMappings(suffix)
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.vert_split, '<C-\\><C-n>:lua require("fm-nvim").setMethod("vsplit | edit")<CR>i' .. suffix, { silent = true })
 end
 
--- Open selected file upon exit
 local function on_exit()
-	local file = io.open(config.tempfile, "r")
-	if file ~= nil then
-		vim.api.nvim_win_close(Win, true)
-		io.close(file)
-		vim.cmd(method .. " " .. vim.fn.readfile(config.tempfile)[1])
+	vim.api.nvim_win_close(Win, true)
+	if io.open("/tmp/fm-nvim", "r") ~= nil then
+		io.close(io.open("/tmp/fm-nvim", "r"))
+		vim.cmd(method .. " " .. vim.fn.readfile("/tmp/fm-nvim")[1])
 		method = config.edit_cmd
+		os.remove("/tmp/fm-nvim")
 	end
+
+	for _,func in ipairs(config.on_close) do func() end
 end
 
--- Create the floating terminal
 local function createWin(cmd)
 	local Buf = vim.api.nvim_create_buf(false, true)
 
@@ -68,15 +67,14 @@ local function createWin(cmd)
 	vim.fn.termopen(cmd, { on_exit = on_exit })
 	vim.api.nvim_command("startinsert")
 	vim.api.nvim_win_set_option(Win, 'winhl', 'Normal:Normal')
-	vim.api.nvim_buf_set_keymap(Buf, 't', 'q', '<C-\\><C-n>:lua vim.api.nvim_win_close(Win, true)<CR>', { silent = true })
-	vim.api.nvim_buf_set_keymap(Buf, 't', '<ESC>', '<C-\\><C-n>:lua vim.api.nvim_win_close(Win, true)<CR>', { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', '<ESC>', 'q', { silent = true })
+	for _,func in ipairs(config.on_open) do func() end
 end
 
--- Open floating terminal w/ fm of choice
-function M.Lf(dir) dir = dir or "." createWin(config.cmds.lf_cmd .. " -selection-path " .. config.tempfile .. " " .. dir) setMappings("l") end
-function M.Nnn(dir) dir = dir or "." createWin(config.cmds.nnn_cmd .. " -p " .. config.tempfile .. " " .. dir) setMappings("<CR>") end
-function M.Xplr(dir) dir = dir or "." createWin(config.cmds.xplr_cmd .. " > " .. config.tempfile .. " " .. dir) setMappings("<CR>") end
-function M.Vifm(dir) dir = dir or "." createWin(config.cmds.vifm_cmd .. " --choose-files " .. config.tempfile .. " " .. dir) setMappings("l") end
-function M.Ranger(dir) dir = dir or "." createWin(config.cmds.ranger_cmd .. " --choosefiles=" .. config.tempfile .. " " .. dir) setMappings("l") end
+function M.Lf(dir) dir = dir or "." createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir) setMappings("l") end
+function M.Nnn(dir) dir = dir or "." createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir) setMappings("<CR>") end
+function M.Xplr(dir) dir = dir or "." createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir) setMappings("<CR>") end
+function M.Vifm(dir) dir = dir or "." createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir) setMappings("l") end
+function M.Ranger(dir) dir = dir or "." createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir) setMappings("l") end
 
 return M
