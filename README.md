@@ -15,6 +15,7 @@
 	* [Vifm](https://github.com/vifm/vifm)
 	* [Nnn](https://github.com/jarun/nnn)
 	* [Lf](https://github.com/gokcehan/lf)
+	* [Fm](https://github.com/knipferrc/fm)
 
 ## Demo:
 ![Demo](Demo.gif)
@@ -53,6 +54,7 @@ require('fm-nvim').setup{
 
 	-- Terminal commands used w/ file manager
 	lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
+	fm_cmd     = "fm",
 	nnn_cmd    = "nnn",
 	xplr_cmd   = "xplr",
 	vifm_cmd   = "vifm",
@@ -76,6 +78,7 @@ Any of the following commands are fine...
 	* `:Vifm`
 	* `:Nnn`
 	* `:Lf`
+	* `:Fm`
 
 but you can add a directory path w/ the command...
 

@@ -9,6 +9,7 @@ local config = {
 	on_open       = {},
 	cmds = {
 		lf_cmd        = "lf",
+		fm_cmd        = "fm",
 		nnn_cmd       = "nnn",
 		xplr_cmd      = "xplr",
 		vifm_cmd      = "vifm",
@@ -72,6 +73,7 @@ local function createWin(cmd)
 end
 
 function M.Lf(dir) dir = dir or "." createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir) setMappings("l") end
+function M.Fm(dir) dir = dir or "." createWin(config.cmds.fm_cmd .. " --selection-path /tmp/fm-nvim --start-dir " .. dir) setMappings("E") end
 function M.Nnn(dir) dir = dir or "." createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir) setMappings("<CR>") end
 function M.Xplr(dir) dir = dir or "." createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir) setMappings("<CR>") end
 function M.Vifm(dir) dir = dir or "." createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir) setMappings("l") end
