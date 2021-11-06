@@ -14,6 +14,7 @@
 	* [Xplr](https://github.com/sayanarijit/xplr)
 	* [Vifm](https://github.com/vifm/vifm)
 	* [Nnn](https://github.com/jarun/nnn)
+	* [Fff](https://github.com/dylanaraps/fff)
 	* [Lf](https://github.com/gokcehan/lf)
 	* [Fm](https://github.com/knipferrc/fm)
 
@@ -56,6 +57,7 @@ require('fm-nvim').setup{
 	lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
 	fm_cmd     = "fm",
 	nnn_cmd    = "nnn",
+	fff_cmd    = "fff",
 	xplr_cmd   = "xplr",
 	vifm_cmd   = "vifm",
 	ranger_cmd = "ranger"
@@ -77,6 +79,7 @@ Any of the following commands are fine...
 	* `:Xplr`
 	* `:Vifm`
 	* `:Nnn`
+	* `:Fff`
 	* `:Lf`
 	* `:Fm`
 
