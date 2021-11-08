@@ -71,6 +71,7 @@ local function createWin(cmd)
 	vim.api.nvim_command("startinsert")
 	vim.api.nvim_win_set_option(Win, 'winhl', 'Normal:Normal')
 	vim.api.nvim_buf_set_keymap(Buf, 't', '<ESC>', 'q', { silent = true })
+	vim.api.nvim_buf_set_option(Buf, 'filetype', 'fm-nvim')
 	for _,func in ipairs(config.on_open) do func() end
 end
 
