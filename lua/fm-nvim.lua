@@ -28,7 +28,7 @@ local method = config.edit_cmd
 function M.setup(user_options) config = vim.tbl_deep_extend('force', config, user_options) end
 
 function M.setMethod(opt) method = opt end
-local function setMappings(suffix)
+function M.setMappings(suffix)
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.edit, '<C-\\><C-n>:lua require("fm-nvim").setMethod("edit")<CR>i' .. suffix, { silent = true })
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.tabedit, '<C-\\><C-n>:lua require("fm-nvim").setMethod("tabedit")<CR>i' .. suffix, { silent = true })
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.horz_split, '<C-\\><C-n>:lua require("fm-nvim").setMethod("split | edit")<CR>i' .. suffix, { silent = true })
@@ -51,7 +51,7 @@ local function on_exit()
 	for _,func in ipairs(config.on_close) do func() end
 end
 
-local function createWin(cmd)
+function M.createWin(cmd)
 	local Buf = vim.api.nvim_create_buf(false, true)
 	local win_height = math.ceil(vim.api.nvim_get_option("lines") * config.height - 4)
 	local win_width = math.ceil(vim.api.nvim_get_option("columns") * config.width)
@@ -75,12 +75,12 @@ local function createWin(cmd)
 	for _,func in ipairs(config.on_open) do func() end
 end
 
-function M.Lf(dir) dir = dir or "." createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir) setMappings("l") end
-function M.Fm(dir) dir = dir or "." createWin(config.cmds.fm_cmd .. " --selection-path /tmp/fm-nvim --start-dir " .. dir) setMappings("E") end
-function M.Nnn(dir) dir = dir or "." createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir) setMappings("<CR>") end
-function M.Fff(dir) dir = dir or "." createWin(config.cmds.fff_cmd .. " -p " .. dir) setMappings("l") end
-function M.Xplr(dir) dir = dir or "." createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir) setMappings("<CR>") end
-function M.Vifm(dir) dir = dir or "." createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir) setMappings("l") end
-function M.Ranger(dir) dir = dir or "." createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir) setMappings("l") end
+function M.Lf(dir) dir = dir or "." M.createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir) M.setMappings("l") end
+function M.Fm(dir) dir = dir or "." M.createWin(config.cmds.fm_cmd .. " --selection-path /tmp/fm-nvim --start-dir " .. dir) M.setMappings("E") end
+function M.Nnn(dir) dir = dir or "." M.createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir) M.setMappings("<CR>") end
+function M.Fff(dir) dir = dir or "." M.createWin(config.cmds.fff_cmd .. " -p " .. dir) M.setMappings("l") end
+function M.Xplr(dir) dir = dir or "." M.createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir) M.setMappings("<CR>") end
+function M.Vifm(dir) dir = dir or "." M.createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir) M.setMappings("l") end
+function M.Ranger(dir) dir = dir or "." M.createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir) M.setMappings("l") end
 
 return M
