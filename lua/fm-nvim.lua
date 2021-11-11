@@ -12,6 +12,7 @@ local config = {
 		fm_cmd        = "fm",
 		nnn_cmd       = "nnn",
 		fff_cmd       = "fff",
+		twf_cmd       = "twf",
 		xplr_cmd      = "xplr",
 		vifm_cmd      = "vifm",
 		ranger_cmd    = "ranger",
@@ -79,6 +80,7 @@ function M.Lf(dir) dir = dir or "." M.createWin(config.cmds.lf_cmd .. " -selecti
 function M.Fm(dir) dir = dir or "." M.createWin(config.cmds.fm_cmd .. " --selection-path /tmp/fm-nvim --start-dir " .. dir) M.setMappings("E") end
 function M.Nnn(dir) dir = dir or "." M.createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir) M.setMappings("<CR>") end
 function M.Fff(dir) dir = dir or "." M.createWin(config.cmds.fff_cmd .. " -p " .. dir) M.setMappings("l") end
+function M.Twf(dir) dir = dir or "." M.createWin(config.cmds.twf_cmd .. " > /tmp/fm-nvim -dir " .. dir) M.setMappings("<CR>") end
 function M.Xplr(dir) dir = dir or "." M.createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir) M.setMappings("<CR>") end
 function M.Vifm(dir) dir = dir or "." M.createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir) M.setMappings("l") end
 function M.Ranger(dir) dir = dir or "." M.createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir) M.setMappings("l") end

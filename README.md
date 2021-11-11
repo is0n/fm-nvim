@@ -15,6 +15,7 @@
 	* [Vifm](https://github.com/vifm/vifm)
 	* [Nnn](https://github.com/jarun/nnn)
 	* [Fff](https://github.com/dylanaraps/fff)
+	* [Twf](https://github.com/wvanlint/twf)
 	* [Lf](https://github.com/gokcehan/lf)
 	* [Fm](https://github.com/knipferrc/fm)
 
@@ -58,6 +59,7 @@ require('fm-nvim').setup{
 	fm_cmd     = "fm",
 	nnn_cmd    = "nnn",
 	fff_cmd    = "fff",
+	twf_cmd    = "twf"
 	xplr_cmd   = "xplr",
 	vifm_cmd   = "vifm",
 	ranger_cmd = "ranger"
@@ -80,6 +82,7 @@ Any of the following commands are fine...
 	* `:Vifm`
 	* `:Nnn`
 	* `:Fff`
+	* `:Twf`
 	* `:Lf`
 	* `:Fm`
 
