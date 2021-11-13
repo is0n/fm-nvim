@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/github/license/is0n/fm-nvim?logo=GNU)](https://github.com/is0n/fm-nvim/blob/master/LICENSE)
 
 # fm-nvim
-`fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers from within Neovim. It's written in under **100 lines of pure Lua**.
+`fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers (and fuzzy finders) from within Neovim. It's written in under **100 lines of Lua**.
 
 * Supported File Managers
 	* [Ranger](https://github.com/ranger/ranger)
@@ -18,6 +18,11 @@
 	* [Twf](https://github.com/wvanlint/twf)
 	* [Lf](https://github.com/gokcehan/lf)
 	* [Fm](https://github.com/knipferrc/fm)
+* Supported Fuzzy Finders
+	* [Fzf](https://github.com/junegunn/fzf)
+	* [Skim](https://github.com/lotabout/skim)
+
+Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.
 
 ## Demo:
 ![Demo](Demo.gif)
@@ -60,17 +65,19 @@ require('fm-nvim').setup{
 		fm_cmd     = "fm",
 		nnn_cmd    = "nnn",
 		fff_cmd    = "fff",
-		twf_cmd    = "twf"
+		twf_cmd    = "twf",
+		fzf_cmd    = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'",
 		xplr_cmd   = "xplr",
 		vifm_cmd   = "vifm",
+		skim_cmd   = "sk",
 		ranger_cmd = "ranger"
-	}
+	},
 
 	-- Mappings used inside the floating window
 	mappings = {
 		vert_split = "<C-v>",
 		horz_split = "<C-h>",
-		tabedit    = "<C-h>",
+		tabedit    = "<C-t>",
 		edit       = "<C-e>"
 	}
 }
@@ -82,13 +89,15 @@ Any of the following commands are fine...
 	* `:Ranger`
 	* `:Xplr`
 	* `:Vifm`
+	* `:Skim`
 	* `:Nnn`
 	* `:Fff`
 	* `:Twf`
+	* `:Fzf`
 	* `:Lf`
 	* `:Fm`
 
-but you can add a directory path w/ the command...
+but you can add a directory path w/ the command, however, this does not work with `skim` or `fzf`.
 
 Example:
 ```
@@ -120,12 +129,6 @@ require('fm-nvim').setup{
 	on_open = { yourFunction }
 }
 ```
-
-## TODO:
-* High Priority
-	* [ ] Replace Netrw
-* Low Priority
-	* [x] Add arguments to the commands (eg. directory path)
 
 Any feedback, issues, or pull requests are greatly appreciated
 
