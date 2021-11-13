@@ -20,6 +20,7 @@
 	* [Fm](https://github.com/knipferrc/fm)
 * Supported Fuzzy Finders
 	* [Fzf](https://github.com/junegunn/fzf)
+	* [Fzy](https://github.com/jhawthorn/fzy)
 	* [Skim](https://github.com/lotabout/skim)
 
 Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.
@@ -67,6 +68,7 @@ require('fm-nvim').setup{
 		fff_cmd    = "fff",
 		twf_cmd    = "twf",
 		fzf_cmd    = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'",
+		fzy_cmd    = "find . | fzy"
 		xplr_cmd   = "xplr",
 		vifm_cmd   = "vifm",
 		skim_cmd   = "sk",
@@ -95,6 +97,7 @@ Any of the following commands are fine...
 	* `:Fff`
 	* `:Twf`
 	* `:Fzf`
+	* `:Fzy`
 	* `:Lf`
 	* `:Fm`
 

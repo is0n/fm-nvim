@@ -14,6 +14,7 @@ local config = {
 		fff_cmd       = "fff",
 		twf_cmd       = "twf",
 		fzf_cmd       = "fzf",
+		fzy_cmd       = "find . | fzy",
 		xplr_cmd      = "xplr",
 		vifm_cmd      = "vifm",
 		skim_cmd      = "sk",
@@ -75,6 +76,7 @@ function M.Nnn(dir) dir = dir or "." M.createWin(config.cmds.nnn_cmd .. " -p /tm
 function M.Fff(dir) dir = dir or "." M.createWin(config.cmds.fff_cmd .. " -p " .. dir, "l") end
 function M.Twf(dir) dir = dir or "." M.createWin(config.cmds.twf_cmd .. " > /tmp/fm-nvim -dir " .. dir, "<CR>") end
 function M.Fzf() M.createWin(config.cmds.fzf_cmd .. " > /tmp/fm-nvim", "<CR>") end
+function M.Fzy() M.createWin(config.cmds.fzy_cmd .. " > /tmp/fm-nvim", "<CR>") end
 function M.Xplr(dir) dir = dir or "." M.createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir, "<CR>") end
 function M.Vifm(dir) dir = dir or "." M.createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir, "l") end
 function M.Skim() M.createWin(config.cmds.skim_cmd .. " > /tmp/fm-nvim", "<CR>") end
