@@ -78,7 +78,8 @@ require('fm-nvim').setup{
 		vert_split = "<C-v>",
 		horz_split = "<C-h>",
 		tabedit    = "<C-t>",
-		edit       = "<C-e>"
+		edit       = "<C-e>",
+		ESC        = "<ESC>"
 	}
 }
 ```

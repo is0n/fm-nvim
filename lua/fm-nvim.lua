@@ -17,13 +17,14 @@ local config = {
 		xplr_cmd      = "xplr",
 		vifm_cmd      = "vifm",
 		skim_cmd      = "sk",
-		ranger_cmd    = "ranger",
+		ranger_cmd    = "ranger"
 	},
 	mappings = {
 		vert_split  = "<C-v>",
 		horz_split  = "<C-h>",
 		tabedit     = "<C-t>",
-		edit        = "<C-e>"
+		edit        = "<C-e>",
+		ESC         = "<ESC>"
 	}
 }
 
@@ -64,6 +65,7 @@ function M.createWin(cmd, suffix)
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.tabedit, '<C-\\><C-n>:lua require("fm-nvim").setMethod("tabedit")<CR>i' .. suffix, { silent = true })
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.horz_split, '<C-\\><C-n>:lua require("fm-nvim").setMethod("split | edit")<CR>i' .. suffix, { silent = true })
 	vim.api.nvim_buf_set_keymap(Buf, 't', config.mappings.vert_split, '<C-\\><C-n>:lua require("fm-nvim").setMethod("vsplit | edit")<CR>i' .. suffix, { silent = true })
+	vim.api.nvim_buf_set_keymap(Buf, 't', '<ESC>', config.mappings.ESC, { silent = true })
 	for _,func in ipairs(config.on_open) do func() end
 end
 
