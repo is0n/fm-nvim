@@ -55,14 +55,16 @@ require('fm-nvim').setup{
 	edit_cmd = "edit", -- opts: 'tabedit'; 'split'; 'pedit'; etc...
 
 	-- Terminal commands used w/ file manager
-	lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
-	fm_cmd     = "fm",
-	nnn_cmd    = "nnn",
-	fff_cmd    = "fff",
-	twf_cmd    = "twf"
-	xplr_cmd   = "xplr",
-	vifm_cmd   = "vifm",
-	ranger_cmd = "ranger"
+	cmds = {
+		lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
+		fm_cmd     = "fm",
+		nnn_cmd    = "nnn",
+		fff_cmd    = "fff",
+		twf_cmd    = "twf"
+		xplr_cmd   = "xplr",
+		vifm_cmd   = "vifm",
+		ranger_cmd = "ranger"
+	}
 
 	-- Mappings used inside the floating window
 	mappings = {
