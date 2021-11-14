@@ -11,6 +11,7 @@
 
 * Supported File Managers
 	* [Ranger](https://github.com/ranger/ranger)
+	* [Broot](https://github.com/Canop/broot)
 	* [Xplr](https://github.com/sayanarijit/xplr)
 	* [Vifm](https://github.com/vifm/vifm)
 	* [Nnn](https://github.com/jarun/nnn)
@@ -26,24 +27,12 @@
 Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.
 
 ## Demo:
-![Demo](Demo.gif)
+![Demo](assets/Demo.gif)
 
 ## Installation:
 * [packer.nvim](https://github.com/wbthomason/packer.nvim):
 	```lua
 	use {'is0n/fm-nvim'}
-	```
-* [vim-plug](https://github.com/junegunn/vim-plug):
-	```vim
-	Plug 'is0n/fm-nvim'
-	```
-* [Vundle](https://github.com/VundleVim/Vundle.vim)
-	```vim
-	Plugin 'is0n/fm-nvim'
-	```
-* [NeoBundle](https://github.com/Shougo/neobundle.vim)
-	```vim
-	NeoBundle 'is0n/fm-nvim'
 	```
 
 ## Configuration:
@@ -72,6 +61,7 @@ require('fm-nvim').setup{
 		xplr_cmd   = "xplr",
 		vifm_cmd   = "vifm",
 		skim_cmd   = "sk",
+		broot_cmd  = "broot",
 		ranger_cmd = "ranger"
 	},
 
@@ -90,6 +80,7 @@ require('fm-nvim').setup{
 Any of the following commands are fine...
 * Commands
 	* `:Ranger`
+	* `:Broot`
 	* `:Xplr`
 	* `:Vifm`
 	* `:Skim`

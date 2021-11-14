@@ -1,0 +1,9 @@
+{
+	verbs: [
+		{
+			key: enter
+			execution: ":print_path"
+			apply_to: file
+		}
+	]
+}
