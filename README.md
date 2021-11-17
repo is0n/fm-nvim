@@ -130,9 +130,9 @@ require('fm-nvim').setup{
 }
 ```
 
-Q: What if I want to map <ESC> to close the window?
+Q: What if I want to map `<ESC>` to close the window?
 
-A: You can do this by mapping <ESC> to whatever closes your file manager (note that this may bring up other issues). This can be done with the following code...
+A: You can do this by mapping `<ESC>` to whatever closes your file manager (note that this may bring up other issues). This can be done with the following code...
 ```lua
 require('fm-nvim').setup{
 	mappings = {
