@@ -3,13 +3,14 @@
 [![Last Commit](https://img.shields.io/github/last-commit/is0n/fm-nvim)](https://github.com/is0n/fm-nvim/pulse)
 [![GitHub Open Issues](https://img.shields.io/github/issues/is0n/fm-nvim.svg)](https://github.com/is0n/fm-nvim/issues/)
 [![GitHub Closed Issues](https://img.shields.io/github/issues-closed/is0n/fm-nvim.svg)](https://github.com/is0n/fm-nvim/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub Contributors](https://img.shields.io/github/contributors/is0n/fm-nvim.svg)](https://github.com/is0n/fm-nvim/graphs/contributors/)
-[![GitHub](https://img.shields.io/github/license/is0n/fm-nvim?logo=GNU)](https://github.com/is0n/fm-nvim/blob/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/is0n/fm-nvim?logo=GNU)](https://github.com/is0n/fm-nvim/blob/master/LICENSE)
+[![Lua](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=white)](https://github.com/is0n/fm-nvim/search?l=lua)
 
 # fm-nvim
 `fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers (and fuzzy finders) from within Neovim. It's written in under **100 lines of Lua**.
 
 * Supported File Managers
+	* [Joshuto](https://github.com/kamiyaa/joshuto)
 	* [Ranger](https://github.com/ranger/ranger)
 	* [Broot](https://github.com/Canop/broot)
 	* [Xplr](https://github.com/sayanarijit/xplr)
@@ -36,7 +37,7 @@ Keep in mind that support for fuzzy finding is quite limited and using seperate 
 	```
 
 ## Configuration:
-Change any of these values to suit your needs
+Change any of these values to suit your needs...
 ```lua
 require('fm-nvim').setup{
 	-- Border around floating window
@@ -51,18 +52,19 @@ require('fm-nvim').setup{
 
 	-- Terminal commands used w/ file manager
 	cmds = {
-		lf_cmd     = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
-		fm_cmd     = "fm",
-		nnn_cmd    = "nnn",
-		fff_cmd    = "fff",
-		twf_cmd    = "twf",
-		fzf_cmd    = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'",
-		fzy_cmd    = "find . | fzy"
-		xplr_cmd   = "xplr",
-		vifm_cmd   = "vifm",
-		skim_cmd   = "sk",
-		broot_cmd  = "broot",
-		ranger_cmd = "ranger"
+		lf_cmd      = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
+		fm_cmd      = "fm",
+		nnn_cmd     = "nnn",
+		fff_cmd     = "fff",
+		twf_cmd     = "twf",
+		fzf_cmd     = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'",
+		fzy_cmd     = "find . | fzy"
+		xplr_cmd    = "xplr",
+		vifm_cmd    = "vifm",
+		skim_cmd    = "sk",
+		broot_cmd   = "broot",
+		ranger_cmd  = "ranger"
+		joshuto_cmd = "joshuto"
 	},
 
 	-- Mappings used inside the floating window
@@ -76,9 +78,12 @@ require('fm-nvim').setup{
 }
 ```
 
+The configuration above are the defaults so if you find these okay, there is no need to use the setup function.
+
 ## Usage:
 Any of the following commands are fine...
 * Commands
+	* `:Joshuto`
 	* `:Ranger`
 	* `:Broot`
 	* `:Xplr`
@@ -92,7 +97,7 @@ Any of the following commands are fine...
 	* `:Lf`
 	* `:Fm`
 
-but you can add a directory path w/ the command, however, this does not work with `skim` or `fzf`.
+but you can add a directory path w/ the command, however, this does not work with `skim`, `fzy`, or `fzf`.
 
 Example:
 ```
@@ -125,10 +130,14 @@ require('fm-nvim').setup{
 }
 ```
 
-Any feedback, issues, or pull requests are greatly appreciated
+Q: What if I want to map <ESC> to close the window?
 
-<div align="center" id="madewithlua">
-	
-[![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg?style=for-the-badge&logo=lua)](#madewithlua)
-	
-</div>
+A: You can do this by mapping <ESC> to whatever closes your file manager (note that this may bring up other issues). This can be done with the following code...
+```lua
+require('fm-nvim').setup{
+	mappings = {
+		-- Example for Vifm
+		ESC        = ":q<CR>"
+	}
+}
+```

@@ -1,25 +1,26 @@
 local M = {}
 
 local config = {
-	border			 = "none",
-	height			 = 0.8,
-	width				 = 0.8,
-	edit_cmd		 = "edit",
-	on_close		 = {},
-	on_open      = {},
+	border			  = "none",
+	height			  = 0.8,
+	width				  = 0.8,
+	edit_cmd		  = "edit",
+	on_close		  = {},
+	on_open       = {},
 	cmds = {
-		lf_cmd     = "lf",
-		fm_cmd     = "fm",
-		nnn_cmd    = "nnn",
-		fff_cmd    = "fff",
-		twf_cmd    = "twf",
-		fzf_cmd    = "fzf",
-		fzy_cmd    = "find . | fzy",
-		xplr_cmd   = "xplr",
-		vifm_cmd   = "vifm",
-		skim_cmd   = "sk",
-		broot_cmd  = "broot",
-		ranger_cmd = "ranger"
+		lf_cmd      = "lf",
+		fm_cmd      = "fm",
+		nnn_cmd     = "nnn",
+		fff_cmd     = "fff",
+		twf_cmd     = "twf",
+		fzf_cmd     = "fzf",
+		fzy_cmd     = "find . | fzy",
+		xplr_cmd    = "xplr",
+		vifm_cmd    = "vifm",
+		skim_cmd    = "sk",
+		broot_cmd   = "broot",
+		ranger_cmd  = "ranger",
+		joshtuo_cmd = "joshuto"
 	},
 	mappings = {
 		vert_split = "<C-v>",
@@ -51,7 +52,7 @@ local function on_exit()
 	for _,func in ipairs(config.on_close) do func() end
 end
 
-function M.createWin(cmd, suffix)
+local function createWin(cmd, suffix)
 	local Buf = vim.api.nvim_create_buf(false, true)
 	local win_height = math.ceil(vim.api.nvim_get_option("lines") * config.height - 4)
 	local win_width = math.ceil(vim.api.nvim_get_option("columns") * config.width)
@@ -71,17 +72,18 @@ function M.createWin(cmd, suffix)
 	for _,func in ipairs(config.on_open) do func() end
 end
 
-function M.Lf(dir) dir = dir or "." M.createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir, "l") end
-function M.Fm(dir) dir = dir or "." M.createWin(config.cmds.fm_cmd .. " --selection-path /tmp/fm-nvim --start-dir " .. dir, "E") end
-function M.Nnn(dir) dir = dir or "." M.createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir, "<CR>") end
-function M.Fff(dir) dir = dir or "." M.createWin(config.cmds.fff_cmd .. " -p " .. dir, "l") end
-function M.Twf(dir) dir = dir or "." M.createWin(config.cmds.twf_cmd .. " > /tmp/fm-nvim -dir " .. dir, "<CR>") end
-function M.Fzf() M.createWin(config.cmds.fzf_cmd .. " > /tmp/fm-nvim", "<CR>") end
-function M.Fzy() M.createWin(config.cmds.fzy_cmd .. " > /tmp/fm-nvim", "<CR>") end
-function M.Xplr(dir) dir = dir or "." M.createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir, "<CR>") end
-function M.Vifm(dir) dir = dir or "." M.createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir, "l") end
-function M.Skim() M.createWin(config.cmds.skim_cmd .. " > /tmp/fm-nvim", "<CR>") end
-function M.Broot(dir) dir = dir or "." M.createWin("broot --conf " .. vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson --out /tmp/fm-nvim " .. dir, "<CR>") end
-function M.Ranger(dir) dir = dir or "." M.createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir, "l") end
+function M.Lf(dir) dir = dir or "." createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir, "l") end
+function M.Fm(dir) dir = dir or "." createWin(config.cmds.fm_cmd .. " --selection-path /tmp/fm-nvim --start-dir " .. dir, "E") end
+function M.Nnn(dir) dir = dir or "." createWin(config.cmds.nnn_cmd .. " -p /tmp/fm-nvim " .. dir, "<CR>") end
+function M.Fff(dir) dir = dir or "." createWin(config.cmds.fff_cmd .. " -p " .. dir, "l") end
+function M.Twf(dir) dir = dir or "." createWin(config.cmds.twf_cmd .. " > /tmp/fm-nvim -dir " .. dir, "<CR>") end
+function M.Fzf() createWin(config.cmds.fzf_cmd .. " > /tmp/fm-nvim", "<CR>") end
+function M.Fzy() createWin(config.cmds.fzy_cmd .. " > /tmp/fm-nvim", "<CR>") end
+function M.Xplr(dir) dir = dir or "." createWin(config.cmds.xplr_cmd .. " > /tmp/fm-nvim " .. dir, "<CR>") end
+function M.Vifm(dir) dir = dir or "." createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir, "l") end
+function M.Skim() createWin(config.cmds.skim_cmd .. " > /tmp/fm-nvim", "<CR>") end
+function M.Broot(dir) dir = dir or "." createWin("broot --conf " .. vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson --out /tmp/fm-nvim " .. dir, "<CR>") end
+function M.Ranger(dir) dir = dir or "." createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir, "l") end
+function M.Joshuto(dir) dir = dir or "." createWin(config.cmds.joshtuo_cmd .. " --choosefiles /tmp/fm-nvim --path " .. dir, "l") end
 
 return M

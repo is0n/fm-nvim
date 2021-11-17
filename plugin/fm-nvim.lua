@@ -10,3 +10,4 @@ vim.cmd [[ command! -nargs=? -complete=dir Vifm :lua require('fm-nvim').Vifm(<f-
 vim.cmd [[ command! Skim :lua require('fm-nvim').Skim() ]]
 vim.cmd [[ command! -nargs=? -complete=dir Broot :lua require('fm-nvim').Broot(<f-args>) ]]
 vim.cmd [[ command! -nargs=? -complete=dir Ranger :lua require('fm-nvim').Ranger(<f-args>) ]]
+vim.cmd [[ command! -nargs=? -complete=dir Joshuto :lua require('fm-nvim').Joshuto(<f-args>) ]]
