@@ -40,30 +40,37 @@ Keep in mind that support for fuzzy finding is quite limited and using seperate 
 Change any of these values to suit your needs...
 ```lua
 require('fm-nvim').setup{
-	-- Border around floating window
-	border   = "none", -- opts: 'rounded'; 'double'; 'single'; 'solid'; 'shawdow'
+	-- Floating window border (see ":h nvim_open_win")
+	border = "none"
 
-	-- Percentage (0.8 = 80%)
-	height   = 0.8,
-	width    = 0.8,
+	-- Highlight group for floating window/border (see ":h winhl")
+	border_hl = "FloatBorder",
+	float_hl = "Normal",
 
-	-- Command used to open files
-	edit_cmd = "edit", -- opts: 'tabedit'; 'split'; 'pedit'; etc...
+	-- Num from `0 - 1` for measurements
+	height = 0.8,
+	width = 0.8,
 
-	-- Terminal commands used w/ file manager
+	-- (Vim) Command used to open files
+	edit_cmd = "edit", -- opts: 'tabedit', 'split', 'pedit', etc...
+
+	-- Floating Window Transparency (see ":h winblend")
+	blend = 0,
+
+	-- Terminal commands used w/ file manager (have to be in your $PATH)
 	cmds = {
 		lf_cmd      = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
 		fm_cmd      = "fm",
 		nnn_cmd     = "nnn",
 		fff_cmd     = "fff",
 		twf_cmd     = "twf",
-		fzf_cmd     = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'",
+		fzf_cmd     = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 		fzy_cmd     = "find . | fzy"
 		xplr_cmd    = "xplr",
 		vifm_cmd    = "vifm",
 		skim_cmd    = "sk",
 		broot_cmd   = "broot",
-		ranger_cmd  = "ranger"
+		ranger_cmd  = "ranger",
 		joshuto_cmd = "joshuto"
 	},
 
@@ -97,7 +104,7 @@ Any of the following commands are fine...
 	* `:Lf`
 	* `:Fm`
 
-but you can add a directory path w/ the command, however, this does not work with `skim`, `fzy`, or `fzf`.
+but you can add a directory path w/ the command (doesn't work with `skim`, `fzy`, or `fzf`).
 
 Example:
 ```
@@ -122,10 +129,10 @@ local function yourFunction()
 end
 
 require('fm-nvim').setup{
-	-- Runs yourFunction() upon exiting the floating window
+	-- Runs yourFunction() upon exiting the floating window (can only be a function)
 	on_close = { yourFunction },
 
-	-- Runs yourFunction() upon opening the floating window (can only be functions)
+	-- Runs yourFunction() upon opening the floating window (can only be a function)
 	on_open = { yourFunction }
 }
 ```
@@ -141,3 +148,13 @@ require('fm-nvim').setup{
 	}
 }
 ```
+or you could map `<ESC>` to quit in your file manager...
+
+Example for [Lf](https://github.com/gokcehan/lf):
+```
+map <esc> :quit
+```
+
+Q: Am I able to have image previews?
+
+A: Yes and no. Assuming you are on Linux, it is possible with the help of tools like [Überzug](https://github.com/seebye/ueberzug). If you are on Mac or Windows, it is not possible.
