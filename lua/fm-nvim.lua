@@ -41,9 +41,11 @@ function M.setMethod(opt) method = opt end
 
 local function checkFile(file)
 	if io.open(file, "r") ~= nil then
-		io.close(io.open(file, "r"))
-		vim.cmd(method .. " " .. vim.fn.readfile(file)[1])
+		for line in io.lines(file) do
+			vim.cmd(method .. " " .. line)
+		end
 		method = config.edit_cmd
+		io.close(io.open(file, "r"))
 		os.remove(file)
 	end
 end
