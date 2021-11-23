@@ -40,7 +40,7 @@
 </p>Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.</p>
 
 ## Demo and Screenshots:
-<div style="width:100%;height:0px;position:relative;padding-bottom:62.500%;"><iframe src="https://streamable.com/e/bake6b" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+![Demo](https://user-images.githubusercontent.com/57725322/142964076-6efd1247-b689-4cf7-bc29-ca1c6746462c.gif)
 
 <p>
 <details>
