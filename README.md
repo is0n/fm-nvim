@@ -7,28 +7,74 @@
 [![Lua](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=white)](https://github.com/is0n/fm-nvim/search?l=lua)
 
 # fm-nvim
-`fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers (and fuzzy finders) from within Neovim. It's written in under **100 lines of Lua**.
+`fm-nvim` is a Neovim plugin that lets you use your favorite terminal file managers (and fuzzy finders) from within Neovim. It's written in under **150 lines of Lua**.
 
-* Supported File Managers
-	* [Joshuto](https://github.com/kamiyaa/joshuto)
-	* [Ranger](https://github.com/ranger/ranger)
-	* [Broot](https://github.com/Canop/broot)
-	* [Xplr](https://github.com/sayanarijit/xplr)
-	* [Vifm](https://github.com/vifm/vifm)
-	* [Nnn](https://github.com/jarun/nnn)
-	* [Fff](https://github.com/dylanaraps/fff)
-	* [Twf](https://github.com/wvanlint/twf)
-	* [Lf](https://github.com/gokcehan/lf)
-	* [Fm](https://github.com/knipferrc/fm)
-* Supported Fuzzy Finders
-	* [Fzf](https://github.com/junegunn/fzf)
-	* [Fzy](https://github.com/jhawthorn/fzy)
-	* [Skim](https://github.com/lotabout/skim)
+<details>
+<summary>Supported File Managers</summary>
 
-Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.
+* [Joshuto](https://github.com/kamiyaa/joshuto)
+* [Ranger](https://github.com/ranger/ranger)
+* [Broot](https://github.com/Canop/broot)
+* [Xplr](https://github.com/sayanarijit/xplr)
+* [Vifm](https://github.com/vifm/vifm)
+* [Nnn](https://github.com/jarun/nnn)
+* [Fff](https://github.com/dylanaraps/fff)
+* [Twf](https://github.com/wvanlint/twf)
+* [Lf](https://github.com/gokcehan/lf)
+* [Fm](https://github.com/knipferrc/fm)
 
-## Demo:
-![Demo](assets/Demo.gif)
+</details>
+
+<p>
+<details>
+<summary>Supported Fuzzy Finders</summary>
+
+* [Skim](https://github.com/lotabout/skim)
+* [Fzf](https://github.com/junegunn/fzf)
+* [Fzy](https://github.com/jhawthorn/fzy)
+
+</details>
+</p>
+
+
+</p>Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.</p>
+
+## Demo and Screenshots:
+<div style="width:100%;height:0px;position:relative;padding-bottom:62.500%;"><iframe src="https://streamable.com/e/bake6b" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+
+<p>
+<details>
+<summary>Screenshots</summary>
+
+##### [Fzf](https://github.com/junegunn/fzf)
+![Fzf](https://user-images.githubusercontent.com/57725322/142956915-2d9a2c98-3074-4c6f-9dd2-467c4080223b.png)
+##### [Fzy](https://github.com/jhawthorn/fzy)
+![Fzy](https://user-images.githubusercontent.com/57725322/142956916-bd78371f-6308-4559-ae55-0014d18b16bb.png)
+##### [Skim](https://github.com/lotabout/skim)
+![Skim](https://user-images.githubusercontent.com/57725322/142956926-0b740bdd-6491-4f9d-b3f3-ecd55b37b1e2.png)
+##### [Fm](https://github.com/knipferrc/fm)
+![Fm](https://user-images.githubusercontent.com/57725322/142956912-ba49e10b-4642-438b-8f09-537fc6301a60.png)
+##### [Lf](https://github.com/gokcehan/lf)
+![Lf](https://user-images.githubusercontent.com/57725322/142956921-1034582f-1e71-4006-975a-bc7a5d20d7a1.png)
+##### [Twf](https://github.com/wvanlint/twf)
+![Twf](https://user-images.githubusercontent.com/57725322/142956928-aacded1a-cd04-4ce8-a81e-cdb40f95f2a5.png)
+##### [Fff](https://github.com/dylanaraps/fff)
+![Fff](https://user-images.githubusercontent.com/57725322/142956906-2eb5d0f1-4a27-4b50-90f8-442cbe6b0cdb.png)
+##### [Nnn](https://github.com/jarun/nnn)
+![Nnn](https://user-images.githubusercontent.com/57725322/142956922-8bb8cac0-e0b3-4074-b8c3-f1ee53374abd.png)
+##### [Vifm](https://github.com/vifm/vifm)
+![Vifm](https://user-images.githubusercontent.com/57725322/142956930-0d428618-2329-490b-a9d4-a06493380713.png)
+##### [Xplr](https://github.com/sayanarijit/xplr)
+![Xplr](https://user-images.githubusercontent.com/57725322/142956932-7e6467fb-1e37-4033-833a-db239a452236.png)
+##### [Broot](https://github.com/Canop/broot)
+![Broot](https://user-images.githubusercontent.com/57725322/142956899-83684e52-d5d8-4398-99a4-bacb1645f6e4.png)
+##### [Ranger](https://github.com/ranger/ranger)
+![Ranger](https://user-images.githubusercontent.com/57725322/142956925-efeb3fe0-e8ca-4d77-8188-ea2d859b5c66.png)
+##### [Joshuto](https://github.com/kamiyaa/joshuto)
+![Joshuto](https://user-images.githubusercontent.com/57725322/142957102-d9132cda-9b6a-44fe-b7d0-e2965c299928.png)
+
+</details>
+</p>
 
 ## Installation:
 * [packer.nvim](https://github.com/wbthomason/packer.nvim):
