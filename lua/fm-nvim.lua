@@ -22,8 +22,10 @@ local config = {
 		vifm_cmd    = "vifm",
 		skim_cmd    = "sk",
 		broot_cmd   = "broot",
+		gitui_cmd   = "gitui",
 		ranger_cmd  = "ranger",
 		joshuto_cmd = "joshuto",
+		lazygit_cmd = "lazygit"
 	},
 	mappings = {
 		vert_split = "<C-v>",
@@ -89,7 +91,9 @@ function M.Xplr(dir) dir = dir or "." createWin(config.cmds.xplr_cmd .. " > /tmp
 function M.Vifm(dir) dir = dir or "." createWin(config.cmds.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir, "l") end
 function M.Skim() createWin(config.cmds.skim_cmd .. " > /tmp/fm-nvim", "<CR>") end
 function M.Broot(dir) dir = dir or "." createWin(config.cmds.broot_cmd .. " --conf " .. vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson --out /tmp/fm-nvim " .. dir, "<CR>") end
+function M.Gitui(dir) dir = dir or "." createWin(config.cmds.gitui_cmd .. " -d " .. dir, "e") end
 function M.Ranger(dir) dir = dir or "." createWin(config.cmds.ranger_cmd .. " --choosefiles=/tmp/fm-nvim " .. dir, "l") end
 function M.Joshuto(dir) dir = dir or "." createWin(config.cmds.joshuto_cmd .. " --choosefiles /tmp/fm-nvim --path " .. dir, "l") end
+function M.Lazygit(dir) dir = dir or "." createWin(config.cmds.lazygit_cmd .. " -w " .. dir, "e") end
 
 return M
