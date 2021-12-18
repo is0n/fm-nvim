@@ -119,22 +119,46 @@ The following configuration contains the defaults so if you find them satisfacto
 
 ```lua
 require('fm-nvim').setup{
-	-- Floating window border (see ":h nvim_open_win")
-	border = "none",
-
-	-- Highlight group for floating window/border (see ":h winhl")
-	border_hl = "FloatBorder",
-	float_hl = "Normal",
-
-	-- Num from `0 - 1` for measurements
-	height = 0.8,
-	width = 0.8,
-
 	-- (Vim) Command used to open files
-	edit_cmd = "edit", -- opts: 'tabedit', 'split', 'pedit', etc...
+	edit_cmd = "edit",
 
-	-- Floating Window Transparency (see ":h winblend")
-	blend = 0,
+	-- See `Q&A` for more info
+	on_close = {},
+	on_open = {},
+
+	-- UI Options
+	ui = {
+		-- Default UI (can be "split" or "float")
+		default = "float",
+
+		float = {
+			-- Floating window border (see ':h nvim_open_win')
+			border    = "none",
+
+			-- Highlight group for floating window/border (see ':h winhl')
+			float_hl  = "Normal",
+			border_hl = "FloatBorder",
+
+			-- Floating Window Transparency (see ':h winblend')
+			blend     = 0,
+
+			-- Num from 0 - 1 for measurements
+			height    = 0.8,
+			width     = 0.8,
+
+			-- X and Y Axis of Window
+			x         = 0.5,
+			y         = 0.5
+		},
+
+		split = {
+			-- Direction of split
+			direction = "topleft",
+
+			-- Size of split
+			size      = 24
+		}
+	},
 
 	-- Terminal commands used w/ file manager (have to be in your $PATH)
 	cmds = {
@@ -155,7 +179,7 @@ require('fm-nvim').setup{
 		lazygit_cmd = "lazygit"
 	},
 
-	-- Mappings used inside the floating window
+	-- Mappings used with the plugin
 	mappings = {
 		vert_split = "<C-v>",
 		horz_split = "<C-h>",
@@ -171,7 +195,7 @@ require('fm-nvim').setup{
 Any of the following commands are fine...
 
 - Commands
-	- `:Lazygit`
+  - `:Lazygit`
   - `:Joshuto`
   - `:Ranger`
   - `:Broot`
@@ -248,3 +272,7 @@ map <esc> :quit
 Q: Am I able to have image previews?
 
 A: Yes and no. Assuming you are on Linux, it is possible with the help of tools like [Überzug](https://github.com/seebye/ueberzug). If you are on Mac or Windows, it is not possible.
+
+Q: Can I use splits instead of a floating window
+
+A: It's possible by changing the "default" option in the "ui" table to "split"
