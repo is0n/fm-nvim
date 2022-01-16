@@ -88,19 +88,19 @@ local function createWin(cmd, suffix)
 	local row = math.ceil((vim.api.nvim_get_option("lines") - win_height) * config.ui.float.y - 1)
 	local opts = { style = "minimal", relative = "editor", border = config.ui.float.border, width = win_width, height = win_height, row = row, col = col }
 	Win = vim.api.nvim_open_win(Buf, true, opts)
+	postCreation(suffix)
 	vim.fn.termopen(cmd, { on_exit = on_exit })
 	vim.api.nvim_command("startinsert")
 	vim.api.nvim_win_set_option(Win, 'winhl', 'Normal:' .. config.ui.float.float_hl .. ',FloatBorder:' .. config.ui.float.border_hl)
 	vim.api.nvim_win_set_option(Win, 'winblend', config.ui.float.blend)
-	postCreation(suffix)
 	CloseCmd = function() vim.api.nvim_win_close(Win, true) end
 end
 
 local function createSplit(cmd, suffix)
 	Buf = vim.cmd(config.ui.split.direction .. " " .. config.ui.split.size .. "vnew")
+	postCreation(suffix)
 	vim.fn.termopen(cmd, { on_exit = on_exit })
 	vim.api.nvim_command("startinsert")
-	postCreation(suffix)
 	CloseCmd = function() vim.cmd("bdelete!") end
 end
 
