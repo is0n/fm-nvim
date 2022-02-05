@@ -186,7 +186,10 @@ require('fm-nvim').setup{
 		tabedit    = "<C-t>",
 		edit       = "<C-e>",
 		ESC        = "<ESC>"
-	}
+	},
+
+	-- Path to broot config
+	broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson"
 }
 ```
 
@@ -276,3 +279,18 @@ A: Yes and no. Assuming you are on Linux, it is possible with the help of tools 
 Q: Can I use splits instead of a floating window
 
 A: It's possible by changing the "default" option in the "ui" table to "split"
+
+Q: Why isn't my `Broot` configuration working?
+
+A: In order to support `Broot`, a custom configuration file is used, however, you can change this by modifying the `broot_conf` option to your configuration. Just be sure to include the following in your config file...
+```
+{
+	verbs: [
+		{
+			key: enter
+			execution: ":print_path"
+			apply_to: file
+		}
+	]
+}
+```

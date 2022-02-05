@@ -18,6 +18,7 @@ local config = {
             size = 24
         }
     },
+    broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
     edit_cmd = "edit",
     on_close = {},
     on_open = {},
@@ -234,17 +235,13 @@ function M.Broot(dir)
     if config.ui.default == "float" then
         createWin(
             config.cmds.broot_cmd ..
-                " --conf " ..
-                    vim.fn.stdpath("data") ..
-                        "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson --out /tmp/fm-nvim " .. dir,
+                " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir,
             "<CR>"
         )
     elseif config.ui.default == "split" then
         createSplit(
             config.cmds.broot_cmd ..
-                " --conf " ..
-                    vim.fn.stdpath("data") ..
-                        "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson --out /tmp/fm-nvim " .. dir,
+                " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir,
             "<CR>"
         )
     end
