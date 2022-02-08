@@ -60,7 +60,7 @@ end
 local function checkFile(file)
     if io.open(file, "r") ~= nil then
         for line in io.lines(file) do
-            vim.cmd(method .. " " .. line)
+            vim.cmd(method .. " " .. vim.fn.fnameescape(line))
         end
         method = config.edit_cmd
         io.close(io.open(file, "r"))
