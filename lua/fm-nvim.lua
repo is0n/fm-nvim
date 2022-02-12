@@ -70,14 +70,17 @@ end
 
 local function on_exit()
     M.closeCmd()
-    checkFile("/tmp/fm-nvim")
-    checkFile(vim.fn.getenv("HOME") .. "/.cache/fff/opened_file")
     for _, func in ipairs(config.on_close) do
         func()
     end
+    checkFile("/tmp/fm-nvim")
+    checkFile(vim.fn.getenv("HOME") .. "/.cache/fff/opened_file")
 end
 
 local function postCreation(suffix)
+    for _, func in ipairs(config.on_open) do
+        func()
+    end
     vim.api.nvim_buf_set_option(M.buf, "filetype", "Fm")
     vim.api.nvim_buf_set_keymap(
         M.buf,
@@ -108,9 +111,6 @@ local function postCreation(suffix)
         {silent = true}
     )
     vim.api.nvim_buf_set_keymap(M.buf, "t", "<ESC>", config.mappings.ESC, {silent = true})
-    for _, func in ipairs(config.on_open) do
-        func()
-    end
 end
 
 local function createWin(cmd, suffix)
