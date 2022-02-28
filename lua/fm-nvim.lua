@@ -37,7 +37,8 @@ local config = {
         gitui_cmd = "gitui",
         ranger_cmd = "ranger",
         joshuto_cmd = "joshuto",
-        lazygit_cmd = "lazygit"
+        lazygit_cmd = "lazygit",
+        neomutt_cmd = "neomutt"
     },
     mappings = {
         vert_split = "<C-v>",
@@ -233,17 +234,9 @@ end
 function M.Broot(dir)
     dir = dir or "."
     if config.ui.default == "float" then
-        createWin(
-            config.cmds.broot_cmd ..
-                " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir,
-            "<CR>"
-        )
+        createWin(config.cmds.broot_cmd .. " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir, "<CR>")
     elseif config.ui.default == "split" then
-        createSplit(
-            config.cmds.broot_cmd ..
-                " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir,
-            "<CR>"
-        )
+        createSplit(config.cmds.broot_cmd .. " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir, "<CR>")
     end
 end
 function M.Gitui(dir)
@@ -276,6 +269,13 @@ function M.Lazygit(dir)
         createWin(config.cmds.lazygit_cmd .. " -w " .. dir, "e")
     elseif config.ui.default == "split" then
         createSplit(config.cmds.lazygit_cmd .. " -w " .. dir, "e")
+    end
+end
+function M.Neomutt()
+    if config.ui.default == "float" then
+        createWin(config.cmds.neomutt_cmd, "<CR>")
+    elseif config.ui.default == "split" then
+        createSplit(config.cmds.neomutt_cmd, "<CR>")
     end
 end
 
