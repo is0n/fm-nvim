@@ -39,6 +39,14 @@
 </details>
 </p>
 
+<details>
+<summary>Extra</summary>
+
+- [Neomutt](https://github.com/neomutt/neomutt)<sup>1</sup>
+
+</details>
+</p>
+
 <p>Keep in mind that support for fuzzy finding is quite limited and using seperate plugins would be more practical.</p>
 
 <p>1. Partial Support as files cannot be opened.</p>
@@ -176,7 +184,8 @@ require('fm-nvim').setup{
 		gitui_cmd   = "gitui",
 		ranger_cmd  = "ranger",
 		joshuto_cmd = "joshuto",
-		lazygit_cmd = "lazygit"
+		lazygit_cmd = "lazygit",
+		neomutt_cmd = "neomutt"
 	},
 
 	-- Mappings used with the plugin
@@ -198,6 +207,7 @@ require('fm-nvim').setup{
 Any of the following commands are fine...
 
 - Commands
+  - `:Neomutt`
   - `:Lazygit`
   - `:Joshuto`
   - `:Ranger`
