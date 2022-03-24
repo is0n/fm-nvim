@@ -146,6 +146,7 @@ end
 
 local function createSplit(cmd, suffix)
     M.buf = vim.cmd(config.ui.split.direction .. " " .. config.ui.split.size .. "vnew")
+    M.buf = vim.call("bufnr", "%")
     postCreation(suffix)
     vim.fn.termopen(cmd, {on_exit = on_exit})
     vim.api.nvim_command("startinsert")
