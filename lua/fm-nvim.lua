@@ -141,12 +141,13 @@ local function createWin(cmd, suffix)
     vim.api.nvim_win_set_option(M.win, "winblend", config.ui.float.blend)
     M.closeCmd = function()
         vim.api.nvim_win_close(M.win, true)
+        vim.api.nvim_buf_delete(M.buf, {force = true})
     end
 end
 
 local function createSplit(cmd, suffix)
-    M.buf = vim.cmd(config.ui.split.direction .. " " .. config.ui.split.size .. "vnew")
-    M.buf = vim.call("bufnr", "%")
+    vim.cmd(config.ui.split.direction .. " " .. config.ui.split.size .. "vnew")
+    M.buf = vim.api.nvim_get_current_buf()
     postCreation(suffix)
     vim.fn.termopen(cmd, {on_exit = on_exit})
     vim.api.nvim_command("startinsert")
