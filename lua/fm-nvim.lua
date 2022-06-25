@@ -236,9 +236,9 @@ end
 function M.Broot(dir)
     dir = dir or "."
     if config.ui.default == "float" then
-        createWin(config.cmds.broot_cmd .. " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir, "<CR>")
+        createWin(config.cmds.broot_cmd .. " --conf " .. config.broot_conf .. " > /tmp/fm-nvim " .. dir, "<CR>")
     elseif config.ui.default == "split" then
-        createSplit(config.cmds.broot_cmd .. " --conf " .. config.broot_conf .. " --out /tmp/fm-nvim " .. dir, "<CR>")
+        createSplit(config.cmds.broot_cmd .. " --conf " .. config.broot_conf .. " > /tmp/fm-nvim " .. dir, "<CR>")
     end
 end
 function M.Gitui(dir)
