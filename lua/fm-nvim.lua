@@ -76,6 +76,7 @@ local function on_exit()
     end
     checkFile("/tmp/fm-nvim")
     checkFile(vim.fn.getenv("HOME") .. "/.cache/fff/opened_file")
+    vim.cmd [[ checktime ]]
 end
 
 local function postCreation(suffix)
