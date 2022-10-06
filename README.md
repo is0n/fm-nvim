@@ -43,6 +43,7 @@
 <summary>Extra</summary>
 
 - [Neomutt](https://github.com/neomutt/neomutt)<sup>1</sup>
+- [Taskwarrior-tui](https://github.com/kdheepak/taskwarrior-tui)<sup>1</sup>
 
 </details>
 </p>
@@ -185,7 +186,8 @@ require('fm-nvim').setup{
 		ranger_cmd  = "ranger",
 		joshuto_cmd = "joshuto",
 		lazygit_cmd = "lazygit",
-		neomutt_cmd = "neomutt"
+		neomutt_cmd = "neomutt",
+        taskwarrior_cmd = "taskwarrior-tui"
 	},
 
 	-- Mappings used with the plugin
@@ -223,6 +225,7 @@ Any of the following commands are fine...
   - `:Fzy`
   - `:Lf`
   - `:Fm`
+  - `:TaskWarriorTUI`
 
 but you can add a directory path w/ the command (doesn't work with `skim`, `fzy`, or `fzf`).
 

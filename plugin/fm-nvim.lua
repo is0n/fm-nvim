@@ -22,3 +22,7 @@ end
 if executable("neomutt") == 1 then
     vim.cmd [[ command! Neomutt :lua require('fm-nvim').Neomutt() ]]
 end
+
+if executable("taskwarrior-tui") == 1 then
+    vim.cmd [[ command! TaskWarriorTUI :lua require('fm-nvim').TaskWarriorTUI() ]]
+end
