@@ -38,7 +38,8 @@ local config = {
         ranger_cmd = "ranger",
         joshuto_cmd = "joshuto",
         lazygit_cmd = "lazygit",
-        neomutt_cmd = "neomutt"
+        neomutt_cmd = "neomutt",
+        taskwarrior_cmd = "taskwarrior-tui"
     },
     mappings = {
         vert_split = "<C-v>",
@@ -279,6 +280,13 @@ function M.Neomutt()
         createWin(config.cmds.neomutt_cmd, "<CR>")
     elseif config.ui.default == "split" then
         createSplit(config.cmds.neomutt_cmd, "<CR>")
+    end
+end
+function M.TaskWarriorTUI()
+    if config.ui.default == "float" then
+        createWin(config.cmds.taskwarrior_cmd, "<CR>")
+    elseif config.ui.default == "split" then
+        createSplit(config.cmds.taskwarrior_cmd, "<CR>")
     end
 end
 
