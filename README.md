@@ -137,51 +137,52 @@ require('fm-nvim').setup{
 
 	-- UI Options
 	ui = {
-		-- Global default UI config for all file managers
-		global = {
-			-- Default UI (can be "split" or "float")
-			default = "float",
+             -- Global default UI config for all file managers
+	     global = {
+		      -- Default UI (can be "split" or "float")
+		      default = "float",
 
-			float = {
-				-- Floating window border (see ':h nvim_open_win')
-				border    = "none",
+		      float = {
+		              -- Floating window border (see ':h nvim_open_win')
+			      border    = "none",
 
-				-- Highlight group for floating window/border (see ':h winhl')
-				float_hl  = "Normal",
-				border_hl = "FloatBorder",
+			      -- Highlight group for floating window/border (see ':h winhl')
+			      float_hl  = "Normal",
+		              border_hl = "FloatBorder",
 
-				-- Floating Window Transparency (see ':h winblend')
-				blend     = 0,
+			      -- Floating Window Transparency (see ':h winblend')
+			      blend     = 0,
 
-				-- Num from 0 - 1 for measurements
-				height    = 0.8,
-				width     = 0.8,
+			      -- Num from 0 - 1 for measurements
+			      height    = 0.8,
+			      width     = 0.8,
 
-				-- X and Y Axis of Window
-				x         = 0.5,
-				y         = 0.5
-			},
+			      -- X and Y Axis of Window
+			      x         = 0.5,
+			      y         = 0.5
+		      },
 
-			split = {
-				-- Direction of split
-				direction = "topleft",
+		      split = {
+			      -- Direction of split
+			      direction = "topleft",
 
-				-- Size of split
-				size      = 24
-			}
-		},
-		-- If you want separate ui config for specific file manager, add config below like this:
-		-- nnn = {
+			      -- Size of split
+			      size      = 24
+		      }
+	      },
+	      
+	      -- If you want separate ui config for specific file manager, add config below like this:
+	      nnn = {
 
-		-- 	default = "split",
+	      	default = "split",
 
-		-- 	split = {
+	      	split = {
 
-		-- 		direction = "topleft",
+          		direction = "topleft",
 
-		-- 		size      = 30
-		-- 	}
-		-- },
+			size      = 30
+	        }
+	      },
 	}
 
 	-- Terminal commands used w/ file manager (have to be in your $PATH)
