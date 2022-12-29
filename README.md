@@ -182,6 +182,7 @@ require('fm-nvim').setup{
 
 			size      = 30
 	        }
+		
 	      },
 	}
 
