@@ -11,12 +11,12 @@ local config = {
             height = 0.8,
             width = 0.8,
             x = 0.5,
-            y = 0.5
+            y = 0.5,
         },
         split = {
             direction = "topleft",
-            size = 24
-        }
+            size = 24,
+        },
     },
     broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson",
     edit_cmd = "edit",
@@ -38,16 +38,17 @@ local config = {
         ranger_cmd = "ranger",
         joshuto_cmd = "joshuto",
         lazygit_cmd = "lazygit",
+        lazydocker_cmd = "lazydocker",
         neomutt_cmd = "neomutt",
-        taskwarrior_cmd = "taskwarrior-tui"
+        taskwarrior_cmd = "taskwarrior-tui",
     },
     mappings = {
         vert_split = "<C-v>",
         horz_split = "<C-h>",
         tabedit = "<C-t>",
         edit = "<C-e>",
-        ESC = "<ESC>"
-    }
+        ESC = "<ESC>",
+    },
 }
 
 local method = config.edit_cmd
@@ -77,7 +78,7 @@ local function on_exit()
     end
     checkFile("/tmp/fm-nvim")
     checkFile(vim.fn.getenv("HOME") .. "/.cache/fff/opened_file")
-    vim.cmd [[ checktime ]]
+    vim.cmd([[ checktime ]])
 end
 
 local function postCreation(suffix)
@@ -90,30 +91,30 @@ local function postCreation(suffix)
         "t",
         config.mappings.edit,
         '<C-\\><C-n>:lua require("fm-nvim").setMethod("edit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.tabedit,
         '<C-\\><C-n>:lua require("fm-nvim").setMethod("tabedit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.horz_split,
         '<C-\\><C-n>:lua require("fm-nvim").setMethod("split | edit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.vert_split,
         '<C-\\><C-n>:lua require("fm-nvim").setMethod("vsplit | edit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
-    vim.api.nvim_buf_set_keymap(M.buf, "t", "<ESC>", config.mappings.ESC, {silent = true})
+    vim.api.nvim_buf_set_keymap(M.buf, "t", "<ESC>", config.mappings.ESC, { silent = true })
 end
 
 local function createWin(cmd, suffix)
@@ -129,11 +130,11 @@ local function createWin(cmd, suffix)
         width = win_width,
         height = win_height,
         row = row,
-        col = col
+        col = col,
     }
     M.win = vim.api.nvim_open_win(M.buf, true, opts)
     postCreation(suffix)
-    vim.fn.termopen(cmd, {on_exit = on_exit})
+    vim.fn.termopen(cmd, { on_exit = on_exit })
     vim.api.nvim_command("startinsert")
     vim.api.nvim_win_set_option(
         M.win,
@@ -143,7 +144,7 @@ local function createWin(cmd, suffix)
     vim.api.nvim_win_set_option(M.win, "winblend", config.ui.float.blend)
     M.closeCmd = function()
         vim.api.nvim_win_close(M.win, true)
-        vim.api.nvim_buf_delete(M.buf, {force = true})
+        vim.api.nvim_buf_delete(M.buf, { force = true })
     end
 end
 
@@ -151,7 +152,7 @@ local function createSplit(cmd, suffix)
     vim.cmd(config.ui.split.direction .. " " .. config.ui.split.size .. "vnew")
     M.buf = vim.api.nvim_get_current_buf()
     postCreation(suffix)
-    vim.fn.termopen(cmd, {on_exit = on_exit})
+    vim.fn.termopen(cmd, { on_exit = on_exit })
     vim.api.nvim_command("startinsert")
     M.closeCmd = function()
         vim.cmd("bdelete!")
@@ -273,6 +274,13 @@ function M.Lazygit(dir)
         createWin(config.cmds.lazygit_cmd .. " -w " .. dir, "e")
     elseif config.ui.default == "split" then
         createSplit(config.cmds.lazygit_cmd .. " -w " .. dir, "e")
+    end
+end
+function M.Lazydocker(dir)
+    if config.ui.default == "float" then
+        createWin(config.cmds.lazydocker_cmd, "<CR>")
+    elseif config.ui.default == "split" then
+        createSplit(config.cmds.neomutt_cmd, "<CR>")
     end
 end
 function M.Neomutt()
