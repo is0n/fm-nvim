@@ -262,9 +262,9 @@ end
 function M.Joshuto(dir)
     dir = dir or "."
     if config.ui.default == "float" then
-        createWin(config.cmds.joshuto_cmd .. " --choosefiles /tmp/fm-nvim --path " .. dir, "l")
+        createWin(config.cmds.joshuto_cmd .. " --output-file /tmp/fm-nvim --file-chooser " .. dir, "l")
     elseif config.ui.default == "split" then
-        createSplit(config.cmds.joshuto_cmd .. " --choosefiles /tmp/fm-nvim --path " .. dir, "l")
+        createSplit(config.cmds.joshuto_cmd .. " --output-file /tmp/fm-nvim --file-chooser " .. dir, "l")
     end
 end
 function M.Lazygit(dir)
