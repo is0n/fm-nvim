@@ -50,6 +50,11 @@ local config = {
     }
 }
 
+local fm_nvim_path = "/tmp/fm-nvim"
+if vim.fn.has("win32") == 1 then
+    fm_nvim_path = vim.fn.getenv("TEMP") .. "/fm-nvim"
+end
+
 local method = config.edit_cmd
 function M.setup(user_options)
     config = vim.tbl_deep_extend("force", config, user_options)
@@ -75,7 +80,7 @@ local function on_exit()
     for _, func in ipairs(config.on_close) do
         func()
     end
-    checkFile("/tmp/fm-nvim")
+    checkFile(fm_nvim_path)
     checkFile(vim.fn.getenv("HOME") .. "/.cache/fff/opened_file")
     vim.cmd [[ checktime ]]
 end
@@ -161,9 +166,9 @@ end
 function M.Lf(dir)
     dir = dir or "."
     if config.ui.default == "float" then
-        createWin(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir, "l")
+        createWin(config.cmds.lf_cmd .. " -selection-path " .. fm_nvim_path .. " " .. dir, "l")
     elseif config.ui.default == "split" then
-        createSplit(config.cmds.lf_cmd .. " -selection-path /tmp/fm-nvim " .. dir, "l")
+        createSplit(config.cmds.lf_cmd .. " -selection-path " .. fm_nvim_path .. " " .. dir, "l")
     end
 end
 function M.Fm(dir)
