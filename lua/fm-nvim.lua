@@ -39,7 +39,8 @@ local config = {
         joshuto_cmd = "joshuto",
         lazygit_cmd = "lazygit",
         neomutt_cmd = "neomutt",
-        taskwarrior_cmd = "taskwarrior-tui"
+        taskwarrior_cmd = "taskwarrior-tui",
+        yazi_cmd = "yazi"
     },
     mappings = {
         vert_split = "<C-v>",
@@ -287,6 +288,14 @@ function M.TaskWarriorTUI()
         createWin(config.cmds.taskwarrior_cmd, "<CR>")
     elseif config.ui.default == "split" then
         createSplit(config.cmds.taskwarrior_cmd, "<CR>")
+    end
+end
+function M.Yazi(dir)
+    dir = dir or "."
+    if config.ui.default == "float" then
+        createWin(config.cmds.yazi_cmd .. " --chooser-file /tmp/fm-nvim " .. dir, "<CR>")
+    elseif config.ui.default == "split" then
+        createSplit(config.cmds.yazi_cmd .. " --chooser-file /tmp/fm-nvim " .. dir, "<CR>")
     end
 end
 
