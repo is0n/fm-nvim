@@ -1,4 +1,4 @@
-local fileManagers = {"Lf", "Fm", "Nnn", "Fff", "Twf", "Xplr", "Vifm", "Broot", "Gitui", "Ranger", "Joshuto", "Lazygit"}
+local fileManagers = {"Lf", "Fm", "Nnn", "Fff", "Twf", "Xplr", "Vifm", "Broot", "Gitui", "Ranger", "Joshuto", "Lazygit", "Yazi"}
 local executable = vim.fn.executable
 
 for _, fm in ipairs(fileManagers) do

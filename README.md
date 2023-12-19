@@ -25,6 +25,7 @@
 - [Twf](https://github.com/wvanlint/twf)
 - [Lf](https://github.com/gokcehan/lf)
 - [Fm](https://github.com/knipferrc/fm)
+- [Yazi](https://github.com/sxyazi/yazi)
 
 </details>
 
